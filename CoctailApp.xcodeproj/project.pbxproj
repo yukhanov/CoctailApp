@@ -20,6 +20,8 @@
 		006B5EC829DA876F0019F9B8 /* CoctailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B5EC729DA876F0019F9B8 /* CoctailModel.swift */; };
 		006B5ECA29DA8B900019F9B8 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B5EC929DA8B900019F9B8 /* MenuPresenter.swift */; };
 		006B5ECD29DA9D0E0019F9B8 /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B5ECC29DA9D0E0019F9B8 /* BannerCell.swift */; };
+		006B5ECF29DAD2240019F9B8 /* MenuVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B5ECE29DAD2240019F9B8 /* MenuVC+Extension.swift */; };
+		006B5ED129DAD6F90019F9B8 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B5ED029DAD6F90019F9B8 /* CategoryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		006B5EC729DA876F0019F9B8 /* CoctailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoctailModel.swift; sourceTree = "<group>"; };
 		006B5EC929DA8B900019F9B8 /* MenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
 		006B5ECC29DA9D0E0019F9B8 /* BannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
+		006B5ECE29DAD2240019F9B8 /* MenuVC+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MenuVC+Extension.swift"; sourceTree = "<group>"; };
+		006B5ED029DAD6F90019F9B8 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +158,7 @@
 			children = (
 				006B5ECB29DA9CFF0019F9B8 /* Cells */,
 				006B5EBC29DA790E0019F9B8 /* MenuViewController.swift */,
+				006B5ECE29DAD2240019F9B8 /* MenuVC+Extension.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -244,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				006B5ECC29DA9D0E0019F9B8 /* BannerCell.swift */,
+				006B5ED029DAD6F90019F9B8 /* CategoryCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -318,6 +324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				006B5ED129DAD6F90019F9B8 /* CategoryCell.swift in Sources */,
 				006B5EC129DA79790019F9B8 /* ProfileViewController.swift in Sources */,
 				006B5EC329DA79810019F9B8 /* TrashViewController.swift in Sources */,
 				006B5EC629DA7A9B0019F9B8 /* NetworkService.swift in Sources */,
@@ -325,6 +332,7 @@
 				006B5E9529DA71400019F9B8 /* AppDelegate.swift in Sources */,
 				006B5E9729DA71400019F9B8 /* SceneDelegate.swift in Sources */,
 				006B5EAA29DA73330019F9B8 /* MainTabBarController.swift in Sources */,
+				006B5ECF29DAD2240019F9B8 /* MenuVC+Extension.swift in Sources */,
 				006B5EBD29DA790E0019F9B8 /* MenuViewController.swift in Sources */,
 				006B5EC829DA876F0019F9B8 /* CoctailModel.swift in Sources */,
 				006B5EBF29DA79700019F9B8 /* ContactsViewController.swift in Sources */,

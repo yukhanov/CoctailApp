@@ -48,6 +48,7 @@ class MenuPresenter: MenuPresenterInput {
                         if let category = drinks[i].strCategory {
                             if !self.categories.contains(category) {
                                 self.categories.append(category)
+                                print(self.categories)
                             }
                         }
                     }

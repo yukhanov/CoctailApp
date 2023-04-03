@@ -27,17 +27,34 @@ final class MenuViewController: UIViewController {
         return button
     }()
     
-    private let bannerCollectionView: UICollectionView = {
-        var collectionView = UICollectionView()
+    let bannerCollectionView: UICollectionView = {
+        
         let layout = UICollectionViewFlowLayout()
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 20
         layout.minimumInteritemSpacing = 0
         layout.itemSize = CGSize(width: 300,
                                  height: 115)
-        collectionView = UICollectionView(frame: .zero,
+        let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: layout)
+        collectionView.register(BannerCell.self, forCellWithReuseIdentifier: BannerCell.identifier)
+        collectionView.backgroundColor = .clear
+        
+        return collectionView
+    }()
+    
+    private lazy var categoryCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 0
+        layout.itemSize = CGSize(width: 88,
+                                 height: 32)
+        let collectionView = UICollectionView(frame: .zero,
+                                              collectionViewLayout: layout)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifier)
+
         collectionView.backgroundColor = .clear
         return collectionView
     }()
@@ -45,8 +62,16 @@ final class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
+        bannerCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        categoryCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        configureCollectionViews()
         setConstraints()
+        callPresenter()
         
+    }
+    private func callPresenter() {
+        presenter?.getData()
+        presenter?.getImage()
     }
     
 }
@@ -56,9 +81,38 @@ extension MenuViewController {
         view.addSubview(cityLabel)
         view.addSubview(changeCityButton)
         view.addSubview(bannerCollectionView)
+        view.addSubview(categoryCollectionView)
+    }
+    
+    func configureCollectionViews() {
+     
+        bannerCollectionView.delegate = self
+        bannerCollectionView.dataSource = self
+        categoryCollectionView.delegate = self
+        categoryCollectionView.dataSource = self
+
     }
     
     func setConstraints() {
-        
+        let safeArea = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            
+            
+            cityLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 8),
+            cityLabel.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            
+            changeCityButton.leadingAnchor.constraint(equalTo: cityLabel.trailingAnchor, constant: 2),
+            changeCityButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 2),
+            
+            bannerCollectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 15),
+            bannerCollectionView.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 8),
+            bannerCollectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            bannerCollectionView.heightAnchor.constraint(equalToConstant: 120),
+            
+            categoryCollectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 15),
+            categoryCollectionView.topAnchor.constraint(equalTo: bannerCollectionView.bottomAnchor, constant: 8),
+            categoryCollectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            categoryCollectionView.heightAnchor.constraint(equalToConstant: 32)
+        ])
     }
 }

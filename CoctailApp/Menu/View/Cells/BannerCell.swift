@@ -13,7 +13,7 @@ final class BannerCell: UICollectionViewCell {
     
     private var bannerImageView: UIImageView = {
         let bannerImageView = UIImageView()
-        bannerImageView.image = UIImage(named: "photo")
+        bannerImageView.image = UIImage(named: "banner")
         bannerImageView.contentMode = .scaleToFill
         bannerImageView.clipsToBounds = true
         bannerImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -24,7 +24,9 @@ final class BannerCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        translatesAutoresizingMaskIntoConstraints = false
         layout()
+        
     }
     
     required init?(coder: NSCoder) {
