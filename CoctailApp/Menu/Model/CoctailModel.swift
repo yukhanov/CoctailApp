@@ -16,8 +16,9 @@ struct Drink: Codable {
     let strDrink: String?
     let strCategory: String?
     let strGlass: String?
-    //let strIngredient1: String?
-    //let strIngredient2: String?
-    //let strIngredient3: String?
+    let strIngredient1: String?
+    let strIngredient2: String?
+    let strIngredient3: String?
     let strDrinkThumb: String?
+    var drinkThumbImage: Data?
 }
