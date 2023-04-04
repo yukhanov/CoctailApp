@@ -58,7 +58,6 @@ extension MenuPresenter: MenuPresenterInput {
             spinner.startAnimating()
         }
        
-        // if there's internet
         NetworkService.shared.getData { [weak self] result in
             
             switch result {
