@@ -10,8 +10,16 @@ import UIKit
 final class MenuViewController: UIViewController {
     
     var presenter: MenuPresenterInput?
+    var prevIndex = 0
     
     let spinner = UIActivityIndicatorView(style: .large)
+    
+    let listTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(ListTableViewCell.self, forCellReuseIdentifier: ListTableViewCell.identifier)
+        return tableView
+    }()
     
     private let cityLabel: UILabel = {
         let label = UILabel()
@@ -45,7 +53,7 @@ final class MenuViewController: UIViewController {
         return collectionView
     }()
     
-    private lazy var categoryCollectionView: UICollectionView = {
+    var categoryCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 10
@@ -70,14 +78,16 @@ final class MenuViewController: UIViewController {
         spinner.color = UIColor.red
         bannerCollectionView.translatesAutoresizingMaskIntoConstraints = false
         categoryCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        configureCollectionViews()
+        configureLists()
         setConstraints()
-
+        
+        
+       
         
     }
     private func callPresenter() {
-        presenter?.getData(for: categoryCollectionView, spinner: spinner)
-        //presenter?.getImage()
+        presenter?.getData(for: categoryCollectionView, tableView: listTableView, spinner: spinner)
+        presenter?.getImage()
     }
     
 }
@@ -88,15 +98,18 @@ extension MenuViewController {
         view.addSubview(changeCityButton)
         view.addSubview(bannerCollectionView)
         view.addSubview(categoryCollectionView)
+        view.addSubview(listTableView)
         view.addSubview(spinner)
     }
     
-    func configureCollectionViews() {
+    func configureLists() {
      
         bannerCollectionView.delegate = self
         bannerCollectionView.dataSource = self
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
+        listTableView.dataSource = self
+        listTableView.delegate = self
 
     }
     
@@ -119,7 +132,13 @@ extension MenuViewController {
             categoryCollectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 15),
             categoryCollectionView.topAnchor.constraint(equalTo: bannerCollectionView.bottomAnchor, constant: 8),
             categoryCollectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            categoryCollectionView.heightAnchor.constraint(equalToConstant: 32)
+            categoryCollectionView.heightAnchor.constraint(equalToConstant: 32),
+            
+            listTableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            listTableView.topAnchor.constraint(equalTo: categoryCollectionView.bottomAnchor, constant: 24),
+            listTableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            listTableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+            
         ])
     }
 }

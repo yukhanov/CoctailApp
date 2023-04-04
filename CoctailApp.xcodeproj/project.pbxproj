@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		002512F629DC0B6400C3E957 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002512F529DC0B6400C3E957 /* ListTableViewCell.swift */; };
 		006B5E9529DA71400019F9B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B5E9429DA71400019F9B8 /* AppDelegate.swift */; };
 		006B5E9729DA71400019F9B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006B5E9629DA71400019F9B8 /* SceneDelegate.swift */; };
 		006B5E9E29DA71400019F9B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 006B5E9D29DA71400019F9B8 /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		002512F529DC0B6400C3E957 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		006B5E9129DA71400019F9B8 /* CoctailApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoctailApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		006B5E9429DA71400019F9B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		006B5E9629DA71400019F9B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 			children = (
 				006B5ECC29DA9D0E0019F9B8 /* BannerCell.swift */,
 				006B5ED029DAD6F90019F9B8 /* CategoryCell.swift */,
+				002512F529DC0B6400C3E957 /* ListTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				006B5ECA29DA8B900019F9B8 /* MenuPresenter.swift in Sources */,
 				006B5E9529DA71400019F9B8 /* AppDelegate.swift in Sources */,
 				006B5E9729DA71400019F9B8 /* SceneDelegate.swift in Sources */,
+				002512F629DC0B6400C3E957 /* ListTableViewCell.swift in Sources */,
 				006B5EAA29DA73330019F9B8 /* MainTabBarController.swift in Sources */,
 				006B5ECF29DAD2240019F9B8 /* MenuVC+Extension.swift in Sources */,
 				006B5EBD29DA790E0019F9B8 /* MenuViewController.swift in Sources */,

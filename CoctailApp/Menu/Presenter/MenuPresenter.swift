@@ -2,7 +2,7 @@
 import UIKit
 
 protocol MenuPresenterInput: AnyObject {
-    func getData(for collectionView: UICollectionView, spinner: UIActivityIndicatorView)
+    func getData(for collectionView: UICollectionView, tableView: UITableView, spinner: UIActivityIndicatorView)
     func getImage()
     func drinkModel(at index: Int) -> Drink
     func categoryModel(at index: Int) -> String
@@ -52,7 +52,7 @@ extension MenuPresenter: MenuPresenterInput {
         return categories[index]
     }
     
-    func getData(for collectionView: UICollectionView, spinner: UIActivityIndicatorView) {
+    func getData(for collectionView: UICollectionView, tableView: UITableView, spinner: UIActivityIndicatorView) {
         
         DispatchQueue.main.async {
             spinner.startAnimating()
@@ -88,8 +88,9 @@ extension MenuPresenter: MenuPresenterInput {
                     DispatchQueue.main.async {
                         self.drinks = drinks
                         collectionView.reloadData()
+                        tableView.reloadData()
                         spinner.stopAnimating()
-                        //self.view?.reloadTableView()
+                        self.view?.reloadTableView()
                     }
                 }
             case .failure(let error):
@@ -106,9 +107,11 @@ extension MenuPresenter: MenuPresenterInput {
             case .success(let images):
                 guard let images = images else { return }
                 self?.images.append(images)
+            
             case .failure(let error):
                 print(error)
             }
         }
+      
     }
 }
