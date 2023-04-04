@@ -29,7 +29,7 @@ extension MenuPresenter: MenuPresenterInput {
             $0.strCategory == category
         }
     }
-
+    
     func indexOfCategory(_ category: String) -> Int? {
         return categories.firstIndex {
             $0 == category
@@ -57,7 +57,7 @@ extension MenuPresenter: MenuPresenterInput {
         DispatchQueue.main.async {
             spinner.startAnimating()
         }
-       
+        
         NetworkService.shared.getData { [weak self] result in
             
             switch result {
@@ -74,7 +74,7 @@ extension MenuPresenter: MenuPresenterInput {
                         if let category = drinks[i].strCategory {
                             if !self.categories.contains(category) {
                                 self.categories.append(category)
-                                print(self.categories)
+                                
                             }
                             
                         }
@@ -84,7 +84,7 @@ extension MenuPresenter: MenuPresenterInput {
                     self.categories = self.categories.sorted()
                     drinks = drinks.sorted(by: { $0.strCategory! < $1.strCategory! })
                     
-    
+                    
                     DispatchQueue.main.async {
                         self.drinks = drinks
                         collectionView.reloadData()
@@ -97,8 +97,6 @@ extension MenuPresenter: MenuPresenterInput {
                 print(error)
             }
         }
-    
-        
     }
     
     func getImage() {
@@ -107,11 +105,11 @@ extension MenuPresenter: MenuPresenterInput {
             case .success(let images):
                 guard let images = images else { return }
                 self?.images.append(images)
-            
+                
             case .failure(let error):
                 print(error)
             }
         }
-      
+        
     }
 }

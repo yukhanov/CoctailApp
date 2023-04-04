@@ -19,6 +19,4 @@ public struct Drink: Codable {
     var drinkThumbImageData: Data?
 }
 
-public struct BannerModel {
-    let bannerArray = ["banner"]
-}
+

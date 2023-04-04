@@ -8,7 +8,7 @@
 import UIKit
 
 class ListTableViewCell: UITableViewCell {
-
+    
     static let identifier = "ListTableViewCell"
     
     private let titleLabel: UILabel = {
@@ -50,12 +50,12 @@ class ListTableViewCell: UITableViewCell {
     }()
     
     private let coctailImageView: UIImageView = {
-        let coctailImageView = UIImageView()
-        coctailImageView.clipsToBounds = true
-        coctailImageView.layer.cornerRadius = 132 / 2
-        coctailImageView.contentMode = .scaleToFill
-        coctailImageView.translatesAutoresizingMaskIntoConstraints = false
-        return coctailImageView
+        let imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 132 / 2
+        imageView.contentMode = .scaleToFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     override init(style: UITableViewCell.CellStyle,
@@ -93,7 +93,7 @@ class ListTableViewCell: UITableViewCell {
         contentView.addSubview(recipeTextView)
         contentView.addSubview(moreButton)
         
-            
+        
         
     }
     func setConstraints() {
@@ -119,7 +119,7 @@ class ListTableViewCell: UITableViewCell {
             moreButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
             moreButton.heightAnchor.constraint(equalToConstant: 32),
             moreButton.widthAnchor.constraint(equalToConstant: 100)
-           
+            
         ])
     }
 }

@@ -43,7 +43,7 @@ class CategoryCell: UICollectionViewCell {
     
     private func layout() {
         contentView.addSubview(categoryLabel)
-
+        
         NSLayoutConstraint.activate([
             categoryLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             categoryLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),

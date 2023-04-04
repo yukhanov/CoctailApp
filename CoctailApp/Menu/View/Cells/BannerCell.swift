@@ -12,14 +12,13 @@ final class BannerCell: UICollectionViewCell {
     static let identifier = "BannerCell"
     
     var bannerImageView: UIImageView = {
-        let bannerImageView = UIImageView()
-        bannerImageView.image = UIImage(named: "banner")
-        bannerImageView.contentMode = .scaleToFill
-        bannerImageView.clipsToBounds = true
-        bannerImageView.translatesAutoresizingMaskIntoConstraints = false
-        bannerImageView.layer.cornerRadius = 15
-        bannerImageView.backgroundColor = .clear
-        return bannerImageView
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 15
+        imageView.backgroundColor = .clear
+        return imageView
     }()
     
     override init(frame: CGRect) {

@@ -9,11 +9,10 @@ import UIKit
 
 extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
-
-   
     
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView === bannerCollectionView {
             return imageArrayForBanner.count
         } else {
@@ -21,8 +20,7 @@ extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView === bannerCollectionView {
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: BannerCell.identifier,
@@ -42,16 +40,27 @@ extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelega
             return cell
         }
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        if collectionView === categoryCollectionView,
+           let category = presenter?.categoryModel(at: indexPath.row),
+           let index = presenter?.firstIndexOfDrink(with: category)  {
+            listTableView.scrollToRow(
+                at: IndexPath(row: index, section: 0),
+                at: .top,
+                animated: false
+            )
+        }
+    }
 }
 
 extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView,
-                   numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter?.numberOfDrinks() ?? 0
     }
     
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: ListTableViewCell.identifier,
             for: indexPath) as? ListTableViewCell,
@@ -61,13 +70,11 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(withDrink: drink)
         return cell
     }
-    func tableView(_ tableView: UITableView,
-                   didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func tableView(_ tableView: UITableView,
-                   heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 210
     }
     
@@ -100,7 +107,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
                 at: IndexPath(row: indexOfCategory, section: 0)
             ) {
                 prevIndex = indexOfCategory
-                cell.contentView.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+                cell.contentView.backgroundColor = #colorLiteral(red: 1, green: 0.7664404511, blue: 0.9316149354, alpha: 1)
                 cell.contentView.layer.borderWidth = 0
                 (cell as? CategoryCell)!.categoryLabel.textColor = #colorLiteral(red: 1, green: 0.07642265409, blue: 0.2490411103, alpha: 1)
             }
@@ -114,7 +121,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
                 categoryCollectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
                 categoryCollectionView.heightAnchor.constraint(equalToConstant: 32)
             ])
-      
+            
             
             UIView.animate(withDuration: 0.2, animations: {
                 self.bannerCollectionView.isHidden = true

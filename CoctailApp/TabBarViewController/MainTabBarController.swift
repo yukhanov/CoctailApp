@@ -38,7 +38,6 @@ final class MainTabBarController: UITabBarController {
         let menuVC = MenuViewController()
         let presenter = MenuPresenter()
         menuVC.presenter = presenter
-        //presenter.view = menuVC
 
         let menuViewController = createNavController(
             viewController: menuVC,

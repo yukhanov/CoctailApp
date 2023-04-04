@@ -65,7 +65,7 @@ final class MenuViewController: UIViewController {
                                               collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifier)
-
+        
         collectionView.backgroundColor = .clear
         return collectionView
     }()
@@ -83,7 +83,7 @@ final class MenuViewController: UIViewController {
         setConstraints()
         
         
-       
+        
         
     }
     private func callPresenter() {
@@ -104,14 +104,14 @@ extension MenuViewController {
     }
     
     func configureLists() {
-     
+        
         bannerCollectionView.delegate = self
         bannerCollectionView.dataSource = self
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
         listTableView.dataSource = self
         listTableView.delegate = self
-
+        
     }
     
     func setConstraints() {
@@ -143,3 +143,5 @@ extension MenuViewController {
         ])
     }
 }
+
+
