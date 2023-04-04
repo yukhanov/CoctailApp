@@ -15,7 +15,7 @@ extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         if collectionView === bannerCollectionView {
-            return 3
+            return imageArrayForBanner.count
         } else {
             return presenter?.numberOfCategories() ?? 0
         }
@@ -29,6 +29,7 @@ extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelega
                 for: indexPath) as? BannerCell else {
                 return UICollectionViewCell()
             }
+            cell.bannerImageView.image = UIImage(named: imageArrayForBanner[indexPath.row])
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(

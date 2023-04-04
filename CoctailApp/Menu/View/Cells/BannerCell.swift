@@ -11,7 +11,7 @@ final class BannerCell: UICollectionViewCell {
     
     static let identifier = "BannerCell"
     
-    private var bannerImageView: UIImageView = {
+    var bannerImageView: UIImageView = {
         let bannerImageView = UIImageView()
         bannerImageView.image = UIImage(named: "banner")
         bannerImageView.contentMode = .scaleToFill
@@ -32,6 +32,8 @@ final class BannerCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+
     
     private func layout() {
         contentView.addSubview(bannerImageView)

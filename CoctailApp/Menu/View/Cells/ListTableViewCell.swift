@@ -11,42 +11,42 @@ class ListTableViewCell: UITableViewCell {
 
     static let identifier = "ListTableViewCell"
     
-    private let coctailTitleLabel: UILabel = {
-        let coctailTitleLabel = UILabel()
-        coctailTitleLabel.font = UIFont.boldSystemFont(ofSize: 17)
-        coctailTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        coctailTitleLabel.textColor = .black
-        return coctailTitleLabel
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .black
+        return label
     }()
     
     private let categoryLabel: UILabel = {
-        let categoryLabel = UILabel()
-        categoryLabel.textColor = .darkGray
-        categoryLabel.translatesAutoresizingMaskIntoConstraints = false
-        categoryLabel.font = UIFont.systemFont(ofSize: 15)
-        return categoryLabel
+        let label = UILabel()
+        label.textColor = .darkGray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 15)
+        return label
     }()
     
-    private let coctailInstructionTextView: UITextView = {
-        let coctailInstructionTextView = UITextView()
-        coctailInstructionTextView.font = UIFont.systemFont(ofSize: 13)
-        coctailInstructionTextView.textColor = .systemGray
-        coctailInstructionTextView.textAlignment = .left
-        coctailInstructionTextView.translatesAutoresizingMaskIntoConstraints = false
-        coctailInstructionTextView.isSelectable = false
-        return coctailInstructionTextView
+    private let recipeTextView: UITextView = {
+        let textView = UITextView()
+        textView.font = UIFont.systemFont(ofSize: 13)
+        textView.textColor = .systemGray
+        textView.textAlignment = .left
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.isSelectable = false
+        return textView
     }()
     
-    private let priceButton: UIButton = {
-        let priceButton = UIButton()
-        priceButton.layer.borderWidth = 1
-        priceButton.layer.borderColor = UIColor.red.cgColor
-        priceButton.layer.cornerRadius = 5
-        priceButton.setTitle("от 345 р", for: .normal)
-        priceButton.translatesAutoresizingMaskIntoConstraints = false
-       // priceButton.setTitleColor(UIColor.standardPink, for: .normal)
-        priceButton.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-        return priceButton
+    private let moreButton: UIButton = {
+        let button = UIButton()
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.red.cgColor
+        button.layer.cornerRadius = 5
+        button.setTitle("Подробнее...", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(.red, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
+        return button
     }()
     
     private let coctailImageView: UIImageView = {
@@ -72,8 +72,8 @@ class ListTableViewCell: UITableViewCell {
     }
     
     func configure(withDrink drink: Drink) {
-        coctailTitleLabel.text = drink.strDrink
-        coctailInstructionTextView.text = drink.strInstructions
+        titleLabel.text = drink.strDrink
+        recipeTextView.text = drink.strInstructions
         categoryLabel.text = "Category: \(drink.strCategory!)"
         
         if let data = drink.drinkThumbImageData,
@@ -88,10 +88,10 @@ class ListTableViewCell: UITableViewCell {
     
     private func layout() {
         contentView.addSubview(coctailImageView)
-        contentView.addSubview(coctailTitleLabel)
+        contentView.addSubview(titleLabel)
         contentView.addSubview(categoryLabel)
-        contentView.addSubview(coctailInstructionTextView)
-        contentView.addSubview(priceButton)
+        contentView.addSubview(recipeTextView)
+        contentView.addSubview(moreButton)
         
             
         
@@ -103,22 +103,22 @@ class ListTableViewCell: UITableViewCell {
             coctailImageView.heightAnchor.constraint(equalToConstant: 132),
             coctailImageView.widthAnchor.constraint(equalToConstant: 132),
             
-            coctailTitleLabel.leadingAnchor.constraint(equalTo: coctailImageView.trailingAnchor, constant: 32),
-            coctailTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
+            titleLabel.leadingAnchor.constraint(equalTo: coctailImageView.trailingAnchor, constant: 32),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
             
             categoryLabel.leadingAnchor.constraint(equalTo: coctailImageView.trailingAnchor, constant: 32),
-            categoryLabel.topAnchor.constraint(equalTo: coctailTitleLabel.bottomAnchor, constant: 7),
+            categoryLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 7),
             categoryLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
             
-            coctailInstructionTextView.leadingAnchor.constraint(equalTo: coctailImageView.trailingAnchor, constant: 29),
-            coctailInstructionTextView.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 5),
-            coctailInstructionTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            coctailInstructionTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -72),
+            recipeTextView.leadingAnchor.constraint(equalTo: coctailImageView.trailingAnchor, constant: 29),
+            recipeTextView.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 5),
+            recipeTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            recipeTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -72),
             
-            priceButton.topAnchor.constraint(equalTo: coctailInstructionTextView.bottomAnchor, constant: 16),
-            priceButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            priceButton.heightAnchor.constraint(equalToConstant: 32),
-            priceButton.widthAnchor.constraint(equalToConstant: 87)
+            moreButton.topAnchor.constraint(equalTo: recipeTextView.bottomAnchor, constant: 16),
+            moreButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            moreButton.heightAnchor.constraint(equalToConstant: 32),
+            moreButton.widthAnchor.constraint(equalToConstant: 100)
            
         ])
     }

@@ -13,7 +13,7 @@ class CategoryCell: UICollectionViewCell {
     let categoryLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        label.textColor = #colorLiteral(red: 0.9270796776, green: 0.1964339018, blue: 0.2452603281, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 13)
         return label

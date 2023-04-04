@@ -18,3 +18,7 @@ public struct Drink: Codable {
     let strDrinkThumb: String
     var drinkThumbImageData: Data?
 }
+
+public struct BannerModel {
+    let bannerArray = ["banner"]
+}

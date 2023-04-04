@@ -11,6 +11,7 @@ final class MenuViewController: UIViewController {
     
     var presenter: MenuPresenterInput?
     var prevIndex = 0
+    var imageArrayForBanner = ["banner", "banner2", "banner3"]
     
     let spinner = UIActivityIndicatorView(style: .large)
     
