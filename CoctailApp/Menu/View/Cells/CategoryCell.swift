@@ -21,7 +21,7 @@ class CategoryCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        translatesAutoresizingMaskIntoConstraints = false
+        
         style()
         layout()
     }

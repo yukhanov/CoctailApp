@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 final class NetworkService {
     
     static let shared = NetworkService()
@@ -38,7 +36,7 @@ final class NetworkService {
             }
             
             do {
-                let decoder = try JSONDecoder().decode(Drinks.self, from: data)
+                let decoder = try JSONDecoder().decode(CoctailModel.self, from: data)
                 completion(.success(decoder.drinks))
                 
             } catch {

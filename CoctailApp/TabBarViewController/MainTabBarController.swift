@@ -36,25 +36,25 @@ final class MainTabBarController: UITabBarController {
     
     private func configureTabBarController() {
         let menuVC = MenuViewController()
-       // let presenter = MenuPresenter()
-       // menuVC.presenter = presenter
-       // presenter.view = menuVC
+        let presenter = MenuPresenter()
+        menuVC.presenter = presenter
+        //presenter.view = menuVC
 
         let menuViewController = createNavController(
             viewController: menuVC,
             itemImage: "fork.knife"
-       )
-//
-       let contactsViewController = createNavController(
+        )
+        
+        let contactsViewController = createNavController(
             viewController: ContactsViewController(),
             itemImage: "location.north.fill"
         )
-//
+        
         let profileViewController = createNavController(
             viewController: ProfileViewController(),
             itemImage: "person"
         )
-//
+        
         let trashViewController = createNavController(
             viewController: TrashViewController(),
             itemImage: "trash"
@@ -72,7 +72,7 @@ final class MainTabBarController: UITabBarController {
     ) -> UINavigationController {
         let navController = UINavigationController(rootViewController: viewController)
         navController.tabBarItem.image = UIImage(systemName: itemImage)
-        tabBar.tintColor = .systemMint
+        tabBar.tintColor = .red
         return navController
     }
 }

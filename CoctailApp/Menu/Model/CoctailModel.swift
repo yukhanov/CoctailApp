@@ -7,18 +7,14 @@
 
 import Foundation
 
-struct Drinks: Codable {
-    let drinks: [Drink]
+public struct CoctailModel: Codable {
+    var drinks: [Drink]
 }
 
-
-struct Drink: Codable {
+public struct Drink: Codable {
     let strDrink: String?
     let strCategory: String?
-    let strGlass: String?
-    let strIngredient1: String?
-    let strIngredient2: String?
-    let strIngredient3: String?
-    let strDrinkThumb: String?
-    var drinkThumbImage: Data?
+    let strInstructions: String?
+    let strDrinkThumb: String
+    var drinkThumbImageData: Data?
 }

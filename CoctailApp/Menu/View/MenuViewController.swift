@@ -11,6 +11,8 @@ final class MenuViewController: UIViewController {
     
     var presenter: MenuPresenterInput?
     
+    let spinner = UIActivityIndicatorView(style: .large)
+    
     private let cityLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17)
@@ -61,17 +63,21 @@ final class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        callPresenter()
         setViews()
+        spinner.center = self.view.center
+        spinner.hidesWhenStopped = true
+        spinner.color = UIColor.red
         bannerCollectionView.translatesAutoresizingMaskIntoConstraints = false
         categoryCollectionView.translatesAutoresizingMaskIntoConstraints = false
         configureCollectionViews()
         setConstraints()
-        callPresenter()
+
         
     }
     private func callPresenter() {
-        presenter?.getData()
-        presenter?.getImage()
+        presenter?.getData(for: categoryCollectionView, spinner: spinner)
+        //presenter?.getImage()
     }
     
 }
@@ -82,6 +88,7 @@ extension MenuViewController {
         view.addSubview(changeCityButton)
         view.addSubview(bannerCollectionView)
         view.addSubview(categoryCollectionView)
+        view.addSubview(spinner)
     }
     
     func configureCollectionViews() {

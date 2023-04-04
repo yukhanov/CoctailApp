@@ -10,15 +10,17 @@ import UIKit
 extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         if collectionView === bannerCollectionView {
-            return 5
+            return 3
         } else {
             return presenter?.numberOfCategories() ?? 0
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView === bannerCollectionView {
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: BannerCell.identifier,
@@ -30,7 +32,7 @@ extension MenuViewController: UICollectionViewDataSource, UICollectionViewDelega
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: CategoryCell.identifier,
                 for: indexPath) as? CategoryCell,
-                  let category = presenter?.getCategory(at: indexPath.row) else {
+                  let category = presenter?.categoryModel(at: indexPath.row) else {
                 return UICollectionViewCell()
             }
             cell.configure(withDrink: category)

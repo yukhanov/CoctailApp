@@ -1,20 +1,11 @@
-//
-//  MenuPresenter.swift
-//  CoctailApp
-//
-//  Created by Сергей Юханов on 03.04.2023.
-//
 
 import UIKit
 
 protocol MenuPresenterInput: AnyObject {
-    var drinks: [Drink] { get set }
-    var images: [UIImage] { get set }
-    var categories: [String] { get set }
-    func getData()
+    func getData(for collectionView: UICollectionView, spinner: UIActivityIndicatorView)
     func getImage()
-    func getDrink(at index: Int) -> Drink
-    func getCategory(at index: Int) -> String
+    func drinkModel(at index: Int) -> Drink
+    func categoryModel(at index: Int) -> String
     func numberOfDrinks() -> Int
     func numberOfCategories() -> Int
     func indexOfCategory(_ category: String) -> Int?
@@ -25,15 +16,51 @@ protocol MenuPresenterOutput: AnyObject {
     func reloadTableView()
 }
 
-class MenuPresenter: MenuPresenterInput {
+class MenuPresenter {
     weak var view: MenuPresenterOutput?
-    var drinks: [Drink] = []
-    var images: [UIImage] = []
-    var categories: [String] = []
+    private var drinks: [Drink] = []
+    private var images: [UIImage] = []
+    private var categories: [String] = []
+}
+
+extension MenuPresenter: MenuPresenterInput {
+    func firstIndexOfDrink(with category: String) -> Int? {
+        return drinks.firstIndex {
+            $0.strCategory == category
+        }
+    }
+
+    func indexOfCategory(_ category: String) -> Int? {
+        return categories.firstIndex {
+            $0 == category
+        }
+    }
     
+    func numberOfDrinks() -> Int {
+        return drinks.count
+    }
     
-    func getData() {
+    func drinkModel(at index: Int) -> Drink {
+        return drinks[index]
+    }
+    
+    func numberOfCategories() -> Int {
+        return categories.count
+    }
+    
+    func categoryModel(at index: Int) -> String {
+        return categories[index]
+    }
+    
+    func getData(for collectionView: UICollectionView, spinner: UIActivityIndicatorView) {
+        
+        DispatchQueue.main.async {
+            spinner.startAnimating()
+        }
+       
+        // if there's internet
         NetworkService.shared.getData { [weak self] result in
+            
             switch result {
             case .success(let drinks):
                 DispatchQueue.global(qos: .utility).async {
@@ -41,8 +68,8 @@ class MenuPresenter: MenuPresenterInput {
                     var drinks = drinks
                     
                     for i in 0..<drinks.count {
-                        if let data = try? Data(contentsOf: URL(string: drinks[i].strDrinkThumb!)!) {
-                            drinks[i].drinkThumbImage = data
+                        if let data = try? Data(contentsOf: URL(string: drinks[i].strDrinkThumb)!) {
+                            drinks[i].drinkThumbImageData = data
                         }
                         
                         if let category = drinks[i].strCategory {
@@ -50,21 +77,27 @@ class MenuPresenter: MenuPresenterInput {
                                 self.categories.append(category)
                                 print(self.categories)
                             }
+                            
                         }
+                        
                     }
                     
                     self.categories = self.categories.sorted()
                     drinks = drinks.sorted(by: { $0.strCategory! < $1.strCategory! })
                     
+    
                     DispatchQueue.main.async {
                         self.drinks = drinks
-                        self.view?.reloadTableView()
+                        collectionView.reloadData()
+                        spinner.stopAnimating()
+                        //self.view?.reloadTableView()
                     }
                 }
             case .failure(let error):
                 print(error)
             }
         }
+    
         
     }
     
@@ -79,39 +112,4 @@ class MenuPresenter: MenuPresenterInput {
             }
         }
     }
-    
-    
-    func getDrink(at index: Int) -> Drink {
-        drinks[index]
-    }
-    
-    func getCategory(at index: Int) -> String {
-        categories[index]
-    }
-    
-    func numberOfDrinks() -> Int {
-        drinks.count
-    }
-    
-    func numberOfCategories() -> Int {
-        categories.count
-    }
-    
-    func indexOfCategory(_ category: String) -> Int? {
-        return categories.firstIndex {
-            $0 == category
-        }
-    }
-    
-    func firstIndexOfDrink(with category: String) -> Int? {
-        return drinks.firstIndex {
-            $0.strCategory == category
-        }
-    }
-    
-    func reloadTableView() {
-        
-    }
-    
-    
 }
